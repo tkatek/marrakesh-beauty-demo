@@ -5,29 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jamal Marrakech — Natural Beauty Rituals from the Medina</title>
 <meta name="description" content="Handmade natural skincare from Marrakesh — cleansers, facial oils, clay masks and moisturizers crafted with argan, prickly pear and rose water.">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<!-- NAV -->
+<!-- ============ NAV ============ -->
 <header class="nav" id="nav">
   <div class="nav__inner">
-    <a href="index.html" class="nav__logo" aria-label="Jamal Marrakech home">
-      <img src="assets/images/logo.jpeg" alt="Jamal Marrakech — جمال مراكش" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-      <span class="nav__logo-fallback" style="display:none;">
-        <span class="nav__logo-mark">ج</span>
-        <span>
-          <span class="nav__logo-text">Jamal <em>Marrakech</em></span>
-          <span class="nav__logo-sub">جمال مراكش</span>
-        </span>
-      </span>
-      <!-- if logo loads, hide fallback via JS below -->
+    <a href="index.html" class="nav__logo">
+      <span class="nav__logo-mark"><img src="assets/images/logo.jpeg" alt="Jamal Marrakech"></span>
+      <span class="nav__logo-text">Jamal <em>Marrakech</em></span>
     </a>
 
-    <nav class="nav__links" id="navLinks" aria-label="Primary">
+    <nav class="nav__links" id="navLinks">
       <a href="index.html" class="is-active">Home</a>
       <a href="#about">Our Story</a>
       <a href="#bestsellers">Bestsellers</a>
@@ -43,7 +38,7 @@
 </header>
 
 <!-- Mobile sidebar -->
-<div class="sidebar" id="sidebar" aria-hidden="true">
+<div class="sidebar" id="sidebar">
   <div class="sidebar__head">
     <span class="nav__logo-text">Jamal <em>Marrakech</em></span>
     <button class="sidebar__close" id="sidebarClose" aria-label="Close menu">&times;</button>
@@ -56,91 +51,72 @@
     <a href="#reviews">Reviews</a>
     <a href="#footer">Get in touch</a>
   </nav>
-  <a href="products.html" class="btn btn--accent sidebar__btn">Shop the Collection</a>
+  <a href="products.html" class="btn btn--gold sidebar__btn">Shop the Collection</a>
 </div>
 <div class="sidebar__overlay" id="sidebarOverlay"></div>
 
-<!-- HERO — warm cream, sun + dots + wavy divider -->
+<!-- ============ HERO ============ -->
 <section class="hero" id="hero">
-  <!-- subtle dotted pattern -->
-  <div class="sun" aria-hidden="true" style="width:720px;height:720px;right:-120px;top:-90px;opacity:.45;">
-    <svg viewBox="0 0 200 200" fill="none">
-      <circle cx="100" cy="100" r="64" stroke="currentColor" stroke-width="1.2" stroke-dasharray="4 8" style="color:var(--accent)"/>
-      <circle cx="100" cy="100" r="8" fill="var(--accent)" opacity=".95"/>
-      <g stroke="currentColor" stroke-width="1.2" stroke-linecap="round" style="color:var(--gold)">
-        <line x1="100" y1="8" x2="100" y2="22"/><line x1="100" y1="178" x2="100" y2="192"/>
-        <line x1="8" y1="100" x2="22" y2="100"/><line x1="178" y1="100" x2="192" y2="100"/>
-        <line x1="36" y1="36" x2="46" y2="46"/><line x1="154" y1="154" x2="164" y2="164"/>
-        <line x1="164" y1="36" x2="154" y2="46"/><line x1="46" y1="154" x2="36" y2="164"/>
-        <line x1="68" y1="18" x2="72" y2="32"/><line x1="132" y1="18" x2="128" y2="32"/>
-        <line x1="68" y1="182" x2="72" y2="168"/><line x1="132" y1="182" x2="128" y2="168"/>
-        <line x1="18" y1="68" x2="32" y2="72"/><line x1="18" y1="132" x2="32" y2="128"/>
-        <line x1="182" y1="68" x2="168" y2="72"/><line x1="182" y1="132" x2="168" y2="128"/>
-      </g>
-    </svg>
+  <div class="hero__media">
+    <img src="assets/images/hero-products.jpg" alt="Jamal Marrakech skincare collection styled among dried herbs and stone" class="hero__img" id="heroImg">
+    <div class="hero__scrim"></div>
   </div>
-  <!-- wavy dots decoration left -->
-  <svg aria-hidden="true" style="position:absolute;left:24px;top:42%;opacity:.18;width:220px;height:80px;">
-    <g fill="none" stroke="var(--accent)" stroke-width="1.1" stroke-linecap="round">
-      <path d="M0 40 Q 22 8 44 40 T 88 40 T 132 40 T 176 40 T 220 40"/>
-      <path d="M0 56 Q 22 24 44 56 T 88 56 T 132 56 T 176 56 T 220 56" opacity=".55"/>
+
+  <!-- Moroccan sun motif -->
+  <svg class="motif motif--sun hero__sun" viewBox="0 0 200 200" fill="none">
+    <circle cx="100" cy="100" r="34" stroke="currentColor" stroke-width="1.4"/>
+    <circle cx="100" cy="100" r="60" stroke="currentColor" stroke-width="1"/>
+    <g stroke="currentColor" stroke-width="1.4">
+      <path d="M100 8v26M100 166v26M8 100h26M166 100h26"/>
+      <path d="M32 32l18 18M150 150l18 18M168 32l-18 18M50 150l-18 18"/>
     </g>
   </svg>
 
-  <div class="hero__inner">
-    <div class="hero__content">
-      <p class="eyebrow hero__eyebrow" data-hero-in>Small batch · Marrakesh, Morocco</p>
-      <h1 class="hero__title" data-hero-in>
-        Rituals drawn<br>from the medina,<br><em>bottled by hand.</em>
-      </h1>
-      <p class="hero__sub" data-hero-in>
-        Argan, prickly pear seed and Atlas rose — the ingredients our grandmothers trusted, formulated into a four-piece ritual for face and skin.
-      </p>
-      <div class="hero__actions" data-hero-in>
-        <a href="products.html" class="btn btn--accent">Shop the Collection →</a>
-        <a href="#about" class="btn btn--ghost">Our Story</a>
-      </div>
-      <div class="hero__trust" data-hero-in>
-        <div class="hero__avatars">
-          <img src="https://i.pravatar.cc/100?img=5" alt="">
-          <img src="https://i.pravatar.cc/100?img=8" alt="">
-          <img src="https://i.pravatar.cc/100?img=12" alt="">
-        </div>
-        <p><strong>4.9/5 from 1,200+ clients</strong><br>Trusted since 2011 · Ecocert &amp; handmade</p>
-      </div>
-    </div>
-
-    <div class="hero__visual" data-hero-in>
-      <div class="hero__sun" aria-hidden="true">
-        <svg viewBox="0 0 200 200" fill="none"><circle cx="100" cy="100" r="72" stroke="currentColor" stroke-width="1" stroke-dasharray="5 9" style="color:var(--line-strong)"/><circle cx="100" cy="100" r="3" fill="var(--accent)"/></svg>
-      </div>
-      <div class="hero__card">
-        <img src="https://images.unsplash.com/photo-1556228578-8dc0d7e1df98?w=900&q=80&auto=format&fit=crop" alt="Jamal Marrakech skincare bottles on stone and botanicals">
-        <div class="hero__card-badge"><i>✦</i> 100% natural · Lot stamped</div>
-      </div>
-      <div class="hero__float">
-        <strong>Radiance Facial Oil</strong>
-        <span>Best seller · 290 MAD</span>
-      </div>
+  <div class="hero__content">
+    <p class="eyebrow" data-hero-in>Small batch · Marrakesh, Morocco</p>
+    <h1 class="hero__title">
+      <span data-hero-in>Rituals drawn</span>
+      <span data-hero-in>from the medina,</span>
+      <span data-hero-in class="hero__title--gold">bottled by hand.</span>
+    </h1>
+    <p class="hero__sub" data-hero-in>
+      Argan, prickly pear seed and Atlas rose — the ingredients our grandmothers trusted, formulated into a four-piece ritual for face and skin.
+    </p>
+    <div class="hero__actions" data-hero-in>
+      <a href="products.html" class="btn btn--gold">Shop the Collection</a>
+      <a href="#about" class="btn btn--ghost">Our Story</a>
     </div>
   </div>
 
-  <!-- wavy bottom divider -->
-  <svg class="hero__wavy" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
-    <path d="M0 56 C 180 6 360 86 540 54 C 720 22 860 8 1080 42 C 1220 62 1340 28 1440 52 L1440 90 L0 90 Z"/>
+  <a href="#about" class="hero__scroll" aria-label="Scroll to next section">
+    <span></span>
+  </a>
+
+  <svg class="hero__wave" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,120 L0,64 C 220,4 420,96 720,96 C 1020,96 1220,4 1440,64 L1440,120 Z"></path>
   </svg>
 </section>
 
-<!-- ABOUT -->
+<!-- ============ ABOUT ============ -->
 <section class="about" id="about">
+  <svg class="motif motif--dots about__dots" viewBox="0 0 220 220" fill="currentColor">
+    <g opacity=".6">
+      <circle cx="10" cy="10" r="3"/><circle cx="40" cy="10" r="3"/><circle cx="70" cy="10" r="3"/><circle cx="100" cy="10" r="3"/>
+      <circle cx="10" cy="40" r="3"/><circle cx="40" cy="40" r="3"/><circle cx="70" cy="40" r="3"/><circle cx="100" cy="40" r="3"/>
+      <circle cx="10" cy="70" r="3"/><circle cx="40" cy="70" r="3"/><circle cx="70" cy="70" r="3"/><circle cx="100" cy="70" r="3"/>
+      <circle cx="10" cy="100" r="3"/><circle cx="40" cy="100" r="3"/><circle cx="70" cy="100" r="3"/><circle cx="100" cy="100" r="3"/>
+    </g>
+  </svg>
+
   <div class="about__inner">
     <div class="about__media reveal-img">
-      <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=900&q=80&auto=format&fit=crop" alt="Natural ingredients and argan products" class="about__img">
+      <img src="assets/images/hero-products.jpg" alt="Ingredients and products arranged on stone" class="about__img">
       <div class="about__badge">
         <strong>12+</strong>
         <span>years of family recipes</span>
       </div>
     </div>
+
     <div class="about__text">
       <p class="eyebrow reveal-up">Our story</p>
       <h2 class="reveal-up">A workshop in the Medina, not a lab.</h2>
@@ -159,15 +135,16 @@
   </div>
 </section>
 
-<!-- BESTSELLERS — online photos -->
+<!-- ============ BESTSELLERS ============ -->
 <section class="bestsellers" id="bestsellers">
-  <div class="section-head section-head--center">
+  <div class="section-head">
     <p class="eyebrow reveal-up">Most loved</p>
     <h2 class="reveal-up">The ritual, in three steps.</h2>
   </div>
+
   <div class="best-grid">
     <article class="product-card reveal-up">
-      <div class="product-card__img" style="background-image:url('https://images.unsplash.com/photo-1556228720-195a672e8a03?w=700&q=80&auto=format&fit=crop');"></div>
+      <img class="product-card__img" loading="lazy" src="https://images.pexels.com/photos/7796743/pexels-photo-7796743.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Pure Cleansing Wash bottle on cork coasters with dried leaves">
       <div class="product-card__body">
         <p class="product-card__tag">Cleanser</p>
         <h3>Pure Cleansing Wash</h3>
@@ -180,24 +157,24 @@
     </article>
 
     <article class="product-card product-card--feature reveal-up">
-      <div class="product-card__img" style="background-image:url('https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=700&q=80&auto=format&fit=crop');"></div>
+      <img class="product-card__img" loading="lazy" src="https://images.pexels.com/photos/8172121/pexels-photo-8172121.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Radiance Facial Oil bottle surrounded by stones and natural fibers">
       <div class="product-card__body">
         <p class="product-card__tag">Best seller</p>
         <h3>Radiance Facial Oil</h3>
-        <p>Cold-pressed argan and prickly pear seed oil, absorbed in seconds. Our most reordered.</p>
+        <p>Cold-pressed argan and prickly pear seed oil, absorbed in seconds. Our first product, still our most reordered.</p>
         <div class="product-card__foot">
           <span class="price">290 MAD</span>
-          <a href="product-details.html" class="btn btn--accent btn--sm">View</a>
+          <a href="product-details.html" class="btn btn--gold btn--sm">View</a>
         </div>
       </div>
     </article>
 
     <article class="product-card reveal-up">
-      <div class="product-card__img" style="background-image:url('https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=700&q=80&auto=format&fit=crop');"></div>
+      <img class="product-card__img" loading="lazy" src="https://images.pexels.com/photos/7815016/pexels-photo-7815016.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Detoxing Clay Mask bottle with warm shadow backdrop">
       <div class="product-card__body">
         <p class="product-card__tag">Mask</p>
         <h3>Detoxing Clay Mask</h3>
-        <p>Rhassoul clay from the Atlas mountains, mixed with rose water to draw out impurities.</p>
+        <p>Rhassoul clay from the Atlas mountains, mixed with rose water to draw out impurities without over-drying.</p>
         <div class="product-card__foot">
           <span class="price">240 MAD</span>
           <a href="product-details.html" class="btn btn--line btn--sm">View</a>
@@ -207,74 +184,102 @@
   </div>
 </section>
 
-<!-- REVIEWS — draggable slider, no arrows -->
+<!-- ============ TESTIMONIALS — drag to see more, no buttons ============ -->
 <section class="reviews" id="reviews">
-  <div class="section-head">
+  <div class="section-head section-head--light">
     <p class="eyebrow reveal-up">From our clients</p>
-    <h2 class="reveal-up">Word travels fast in<br>the medina.</h2>
+    <h2 class="reveal-up">Word travels fast in the medina.</h2>
   </div>
-  <div class="reviews__wrap reveal-up">
-    <div class="reviews__track" id="reviewsTrack" aria-label="Client reviews — drag to scroll">
-      <figure class="review-card">
-        <div class="review-card__stars">★★★★★</div>
-        <blockquote>My skin hasn't felt like this since I was a teenager. The facial oil is now the first thing I pack when I travel.</blockquote>
-        <figcaption><span class="review-card__name">Salma B.</span><span class="review-card__meta">Casablanca · Radiance Facial Oil</span></figcaption>
-      </figure>
-      <figure class="review-card">
-        <div class="review-card__stars">★★★★★</div>
-        <blockquote>You can genuinely smell the difference between this and mass-market argan oil. It's the real thing.</blockquote>
-        <figcaption><span class="review-card__name">Youssef K.</span><span class="review-card__meta">Rabat · Pure Cleansing Wash</span></figcaption>
-      </figure>
-      <figure class="review-card">
-        <div class="review-card__stars">★★★★★</div>
-        <blockquote>The clay mask is now a weekly ritual in our house. Ordered three times already, will keep ordering.</blockquote>
-        <figcaption><span class="review-card__name">Nadia F.</span><span class="review-card__meta">Marrakesh · Detoxing Clay Mask</span></figcaption>
-      </figure>
-      <figure class="review-card">
-        <div class="review-card__stars">★★★★★</div>
-        <blockquote>I bought the hammam kit for my mother — she said it smells exactly like the hammam of her childhood.</blockquote>
-        <figcaption><span class="review-card__name">Amina L.</span><span class="review-card__meta">Fez · Hammam Ritual Kit</span></figcaption>
-      </figure>
-      <figure class="review-card">
-        <div class="review-card__stars">★★★★★</div>
-        <blockquote>Fast reply on WhatsApp, careful packaging, and my rose toner arrived in two days. Impeccable.</blockquote>
-        <figcaption><span class="review-card__name">Julie M.</span><span class="review-card__meta">Lyon · Rose Water Toner</span></figcaption>
-      </figure>
-      <figure class="review-card">
-        <div class="review-card__stars">★★★★★</div>
-        <blockquote>My sensitive skin loves the moisturizer. No fragrance, no sting — just calm, hydrated skin.</blockquote>
-        <figcaption><span class="review-card__name">Hassan R.</span><span class="review-card__meta">Tangier · Hydrating Moisturizer</span></figcaption>
-      </figure>
-      <figure class="review-card">
-        <div class="review-card__stars">★★★★★</div>
-        <blockquote>The lip balm saved my winter. Small jar, lasts forever, and the texture is perfect under lipstick.</blockquote>
-        <figcaption><span class="review-card__name">Leila S.</span><span class="review-card__meta">Marrakesh · Nourishing Lip Balm</span></figcaption>
-      </figure>
-      <figure class="review-card">
-        <div class="review-card__stars">★★★★★</div>
-        <blockquote>Black soap exfoliant + kessa = the smoothest skin I've ever had. Weekly ritual forever.</blockquote>
-        <figcaption><span class="review-card__name">Omar E.</span><span class="review-card__meta">Casablanca · Black Soap Exfoliant</span></figcaption>
-      </figure>
-    </div>
-    <p class="reviews__hint">Drag to explore · No buttons needed</p>
+
+  <div class="reviews__track" id="reviewsTrack">
+    <figure class="review-card">
+      <blockquote>My skin hasn't felt like this since I was a teenager. The facial oil is now the first thing I pack when I travel.</blockquote>
+      <figcaption>
+        <span class="review-card__name">Salma B.</span>
+        <span class="review-card__meta">Casablanca · Radiance Facial Oil</span>
+      </figcaption>
+    </figure>
+
+    <figure class="review-card">
+      <blockquote>You can genuinely smell the difference between this and mass-market argan oil. It's the real thing.</blockquote>
+      <figcaption>
+        <span class="review-card__name">Youssef K.</span>
+        <span class="review-card__meta">Rabat · Pure Cleansing Wash</span>
+      </figcaption>
+    </figure>
+
+    <figure class="review-card">
+      <blockquote>The clay mask is now a weekly ritual in our house. Ordered three times already, will keep ordering.</blockquote>
+      <figcaption>
+        <span class="review-card__name">Nadia F.</span>
+        <span class="review-card__meta">Marrakesh · Detoxing Clay Mask</span>
+      </figcaption>
+    </figure>
+
+    <figure class="review-card">
+      <blockquote>I bought the whole ritual as a gift for my mother. She's since ordered two more sets for her sisters.</blockquote>
+      <figcaption>
+        <span class="review-card__name">Imane R.</span>
+        <span class="review-card__meta">Fès · Full Ritual Set</span>
+      </figcaption>
+    </figure>
+
+    <figure class="review-card">
+      <blockquote>Delivery was fast and the packaging alone felt like a gift. The moisturizer is now part of my morning routine.</blockquote>
+      <figcaption>
+        <span class="review-card__name">Hamza T.</span>
+        <span class="review-card__meta">Tangier · Hydrating Moisturizer</span>
+      </figcaption>
+    </figure>
   </div>
+
+  <p class="reviews__hint">
+    <svg viewBox="0 0 26 14" fill="none"><path d="M1 7h22M17 1l6 6-6 6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Drag to read more
+  </p>
 </section>
 
-<!-- SHOP PREVIEW — online photos -->
+<!-- ============ SHOP PREVIEW ============ -->
 <section class="shop" id="shop">
-  <div class="section-head section-head--center">
+  <div class="section-head">
     <p class="eyebrow reveal-up">The full collection</p>
     <h2 class="reveal-up">Shop by skin ritual.</h2>
   </div>
+
   <div class="shop-grid">
-    <a href="product-details.html" class="shop-card reveal-up"><div class="shop-card__img" style="background-image:url('https://images.unsplash.com/photo-1556228720-195a672e8a03?w=700&q=80&auto=format&fit=crop')"></div><div class="shop-card__body"><h4>Pure Cleansing Wash</h4><span>220 MAD</span></div></a>
-    <a href="product-details.html" class="shop-card reveal-up"><div class="shop-card__img" style="background-image:url('https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=700&q=80&auto=format&fit=crop')"></div><div class="shop-card__body"><h4>Radiance Facial Oil</h4><span>290 MAD</span></div></a>
-    <a href="product-details.html" class="shop-card reveal-up"><div class="shop-card__img" style="background-image:url('https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=700&q=80&auto=format&fit=crop')"></div><div class="shop-card__body"><h4>Detoxing Clay Mask</h4><span>240 MAD</span></div></a>
-    <a href="product-details.html" class="shop-card reveal-up"><div class="shop-card__img" style="background-image:url('https://images.unsplash.com/photo-1556228578-8dc0d7e1df98?w=700&q=80&auto=format&fit=crop')"></div><div class="shop-card__body"><h4>Hydrating Moisturizer</h4><span>260 MAD</span></div></a>
-    <a href="product-details.html" class="shop-card reveal-up"><div class="shop-card__img" style="background-image:url('https://images.unsplash.com/photo-1526948128573-703ee1aeb6fa?w=700&q=80&auto=format&fit=crop')"></div><div class="shop-card__body"><h4>Rose Water Toner</h4><span>150 MAD</span></div></a>
-    <a href="product-details.html" class="shop-card reveal-up"><div class="shop-card__img" style="background-image:url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=700&q=80&auto=format&fit=crop')"></div><div class="shop-card__body"><h4>Nourishing Lip Balm</h4><span>90 MAD</span></div></a>
-    <a href="product-details.html" class="shop-card reveal-up"><div class="shop-card__img" style="background-image:url('https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=700&q=80&auto=format&fit=crop')"></div><div class="shop-card__body"><h4>Black Soap Exfoliant</h4><span>180 MAD</span></div></a>
-    <a href="product-details.html" class="shop-card reveal-up"><div class="shop-card__img" style="background-image:url('https://images.unsplash.com/photo-1570554886111-e0fc33a4d8d1?w=700&q=80&auto=format&fit=crop')"></div><div class="shop-card__body"><h4>Hammam Ritual Kit</h4><span>420 MAD</span></div></a>
+    <a href="product-details.html" class="shop-card reveal-up">
+      <img class="shop-card__img" loading="lazy" src="https://images.pexels.com/photos/7796743/pexels-photo-7796743.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Pure Cleansing Wash">
+      <div class="shop-card__body"><h4>Pure Cleansing Wash</h4><span>220 MAD</span></div>
+    </a>
+    <a href="product-details.html" class="shop-card reveal-up">
+      <img class="shop-card__img" loading="lazy" src="https://images.pexels.com/photos/8172121/pexels-photo-8172121.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Radiance Facial Oil">
+      <div class="shop-card__body"><h4>Radiance Facial Oil</h4><span>290 MAD</span></div>
+    </a>
+    <a href="product-details.html" class="shop-card reveal-up">
+      <img class="shop-card__img" loading="lazy" src="https://images.pexels.com/photos/7815016/pexels-photo-7815016.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Detoxing Clay Mask">
+      <div class="shop-card__body"><h4>Detoxing Clay Mask</h4><span>240 MAD</span></div>
+    </a>
+    <a href="product-details.html" class="shop-card reveal-up">
+      <img class="shop-card__img" loading="lazy" src="https://images.pexels.com/photos/30979444/pexels-photo-30979444/free-photo-of-minimalist-skincare-product-on-white-plate.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Hydrating Moisturizer">
+      <div class="shop-card__body"><h4>Hydrating Moisturizer</h4><span>260 MAD</span></div>
+    </a>
+    <a href="product-details.html" class="shop-card reveal-up">
+      <img class="shop-card__img" loading="lazy" src="https://images.pexels.com/photos/29176565/pexels-photo-29176565/free-photo-of-oranges-and-lotion-bottle-on-white-sheets.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Rose Water Toner">
+      <div class="shop-card__body"><h4>Rose Water Toner</h4><span>150 MAD</span></div>
+    </a>
+    <a href="product-details.html" class="shop-card reveal-up">
+      <img class="shop-card__img" loading="lazy" src="https://images.pexels.com/photos/8167115/pexels-photo-8167115.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Nourishing Lip Balm">
+      <div class="shop-card__body"><h4>Nourishing Lip Balm</h4><span>90 MAD</span></div>
+    </a>
+    <a href="product-details.html" class="shop-card reveal-up">
+      <img class="shop-card__img" loading="lazy" src="https://images.pexels.com/photos/8166607/pexels-photo-8166607.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Black Soap Exfoliant">
+      <div class="shop-card__body"><h4>Black Soap Exfoliant</h4><span>180 MAD</span></div>
+    </a>
+    <a href="product-details.html" class="shop-card reveal-up">
+      <img class="shop-card__img" loading="lazy" src="https://images.pexels.com/photos/8167117/pexels-photo-8167117.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Hammam Ritual Kit">
+      <div class="shop-card__body"><h4>Hammam Ritual Kit</h4><span>420 MAD</span></div>
+    </a>
+
     <a href="products.html" class="shop-card shop-card--more reveal-up">
       <span class="shop-card--more__num">+12</span>
       <span>View Full Collection</span>
@@ -282,12 +287,22 @@
   </div>
 </section>
 
-<!-- WHY -->
+<!-- ============ WHY US ============ -->
 <section class="why" id="why">
-  <div class="section-head section-head--center">
+  <svg class="motif motif--sun why__sun" viewBox="0 0 200 200" fill="none">
+    <circle cx="100" cy="100" r="34" stroke="currentColor" stroke-width="1.4"/>
+    <circle cx="100" cy="100" r="60" stroke="currentColor" stroke-width="1"/>
+    <g stroke="currentColor" stroke-width="1.4">
+      <path d="M100 8v26M100 166v26M8 100h26M166 100h26"/>
+      <path d="M32 32l18 18M150 150l18 18M168 32l-18 18M50 150l-18 18"/>
+    </g>
+  </svg>
+
+  <div class="section-head">
     <p class="eyebrow reveal-up">Why Jamal Marrakech</p>
     <h2 class="reveal-up">Simple ingredients. No shortcuts.</h2>
   </div>
+
   <div class="why-grid">
     <div class="why-card reveal-up">
       <svg viewBox="0 0 40 40" fill="none"><path d="M20 4C11 10 8 18 8 24a12 12 0 0024 0c0-6-3-14-12-20Z" stroke="currentColor" stroke-width="1.6"/></svg>
@@ -312,30 +327,33 @@
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ============ FOOTER ============ -->
 <footer class="footer" id="footer">
   <div class="footer__top">
     <div class="footer__brand">
-      <span class="footer__logo">Jamal <em>Marrakech</em></span>
-      <p>Natural skincare, formulated and bottled in the Marrakesh medina. جمال مراكش</p>
+      <span class="nav__logo-text footer__logo">Jamal <em>Marrakech</em></span>
+      <p>Natural skincare, formulated and bottled in the Marrakesh medina.</p>
       <div class="footer__social">
         <a href="#" aria-label="Instagram">IG</a>
         <a href="#" aria-label="Facebook">FB</a>
         <a href="#" aria-label="WhatsApp">WA</a>
       </div>
     </div>
+
     <div class="footer__col">
       <h5>Shop</h5>
       <a href="products.html">Full Collection</a>
       <a href="#bestsellers">Bestsellers</a>
       <a href="product-details.html">Hammam Ritual Kit</a>
     </div>
+
     <div class="footer__col">
       <h5>Company</h5>
       <a href="#about">Our Story</a>
       <a href="#reviews">Reviews</a>
       <a href="#why">Why Us</a>
     </div>
+
     <div class="footer__col">
       <h5>Visit or write</h5>
       <p>Derb El Ferrane, Medina<br>Marrakesh, Morocco</p>
@@ -343,9 +361,14 @@
       <p><a href="mailto:hello@jamalmarrakech.com">hello@jamalmarrakech.com</a></p>
     </div>
   </div>
+
   <div class="footer__map">
-    <iframe src="https://www.google.com/maps?q=Marrakesh%20Medina&output=embed" width="100%" height="100%" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Jamal Marrakech location"></iframe>
+    <iframe
+      src="https://www.google.com/maps?q=Marrakesh%20Medina&output=embed"
+      width="100%" height="100%" style="border:0;" loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade" title="Jamal Marrakech location"></iframe>
   </div>
+
   <div class="footer__bottom">
     <span>&copy; 2026 Jamal Marrakech. All rights reserved.</span>
     <span>Demo site built for review purposes.</span>
@@ -355,6 +378,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="js/main.js"></script>
-<script src="js/animations.js"></script>
 </body>
 </html>

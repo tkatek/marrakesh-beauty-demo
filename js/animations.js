@@ -1,119 +1,70 @@
 /* ==========================================================================
-   animations.js — Marrakesh Beauty
-   Hero + scroll reveal animations.
-   Uses GSAP when available (CDN), otherwise falls back to an
-   IntersectionObserver-based reveal so the site still animates gracefully.
-   Honors prefers-reduced-motion.
+   animations.js — Jamal Marrakech
+   GSAP hero + ScrollTrigger reveals. Honors prefers-reduced-motion.
+   Falls back silently if GSAP missing (main.js handles IO fallback).
    ========================================================================== */
-
 (function () {
-  "use strict";
+  var REDUCED = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  var REDUCED =
-    window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  /* ------------------------- Shared scroll-reveal ------------------------- */
-
-  var observer = null;
-
-  function observeReveals() {
-    if (!("IntersectionObserver" in window) || REDUCED) return;
-
-    if (observer) {
-      // Re-run on newly added nodes (e.g. featured grid injected by main.js)
-      var revealables = document.querySelectorAll(".reveal:not(.is-inview)");
-      revealables.forEach(function (el) { observer.observe(el); });
-      return;
-    }
-
-    observer = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-inview");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -48px 0px" }
-    );
-
-    document.querySelectorAll(".reveal").forEach(function (el) {
-      observer.observe(el);
-    });
-  }
-
-  window.MB = window.MB || {};
-  window.MB.observeReveals = observeReveals;
-
-  /* ------------------------- GSAP hero timeline ------------------------- */
-
-  function gsapHero() {
+  document.addEventListener('DOMContentLoaded', function () {
     if (REDUCED || !window.gsap) return;
 
-    var heroTitle = document.querySelector(".hero__title");
-    if (!heroTitle) return;
+    var hasST = !!window.ScrollTrigger;
+    if (hasST && typeof gsap.registerPlugin === 'function') gsap.registerPlugin(ScrollTrigger);
 
-    var tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-
-    tl.fromTo(
-      ".hero__badge",
-      { opacity: 0, y: 18 },
-      { opacity: 1, y: 0, duration: 0.6 },
-      0.1
-    )
-      .fromTo(
-        ".hero__title",
-        { opacity: 0, y: 34 },
-        { opacity: 1, y: 0, duration: 0.9 },
-        0.3
-      )
-      .fromTo(
-        ".hero__text",
-        { opacity: 0, y: 24 },
-        { opacity: 1, y: 0, duration: 0.7 },
-        0.55
-      )
-      .fromTo(
-        ".hero__cta .btn",
-        { opacity: 0, y: 18 },
-        { opacity: 1, y: 0, duration: 0.6, stagger: 0.12 },
-        0.7
-      );
-
-    return tl;
-  }
-
-  /* ------------------------- Parallax on hero media (subtle) ------------------------- */
-
-  function gsapParallax() {
-    if (REDUCED || !window.gsap) return;
-
-    var hero = document.querySelector(".hero");
-    if (!hero) return;
-
-    gsap.to(hero, {
-      backgroundPositionY: "42%",
-      scrollTrigger: {
-        trigger: hero,
-        start: "top top",
-        end: "bottom top",
-        scrub: 0.6
-      }
-    });
-  }
-
-  /* ------------------------- Boot ------------------------- */
-
-  document.addEventListener("DOMContentLoaded", function () {
-    observeReveals();
-
-    if (window.gsap) {
-      if (window.ScrollTrigger && typeof window.gsap.registerPlugin === "function") {
-        window.gsap.registerPlugin(window.ScrollTrigger);
-      }
-      gsapHero();
-      if (window.ScrollTrigger) gsapParallax();
+    /* Hero entrance — warm, readable, no green flash */
+    var hero = document.getElementById('hero');
+    if (hero && document.querySelectorAll('[data-hero-in]').length) {
+      var tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+      tl.to('[data-hero-in]', { opacity: 1, y: 0, duration: 0.85, stagger: 0.11 }, 0.18)
+        .from('.hero__card', { y: 28, opacity: 0, duration: 1, ease: 'power2.out' }, 0.35)
+        .from('.hero__float', { y: 18, opacity: 0, duration: 0.7 }, 0.85);
+      // subtle sun rotation
+      var sun = document.querySelector('.hero__sun svg, .sun svg');
+      if (sun) gsap.to(sun, { rotation: 360, duration: 90, repeat: -1, ease: 'none', transformOrigin: '50% 50%' });
     }
+
+    if (!hasST) return;
+
+    // group reveals with stagger — mirrors main.js groups but via GSAP for smoothness
+    var groups = ['.best-grid', '.shop-grid', '.why-grid'];
+    groups.forEach(function (sel) {
+      var grid = document.querySelector(sel);
+      if (!grid) return;
+      var items = grid.querySelectorAll('.reveal-up');
+      if (!items.length) return;
+      items.forEach(function (el, i) { el.style.transitionDelay = (i * 0.07) + 's'; });
+      ScrollTrigger.create({
+        trigger: grid, start: 'top 84%', once: true,
+        onEnter: function () { items.forEach(function (el) { el.classList.add('is-visible'); }); }
+      });
+    });
+
+    // reviews track
+    var track = document.getElementById('reviewsTrack');
+    if (track) {
+      ScrollTrigger.create({
+        trigger: '#reviews', start: 'top 82%', once: true,
+        onEnter: function () {
+          document.querySelectorAll('#reviews .reveal-up').forEach(function (el) { el.classList.add('is-visible'); });
+          gsap.fromTo(track, { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.8, ease: 'power2.out' });
+        }
+      });
+    }
+
+    // single reveals
+    var single = document.querySelectorAll('.reveal-up:not(.best-grid .reveal-up):not(.shop-grid .reveal-up):not(.why-grid .reveal-up):not(#reviews .reveal-up)');
+    single.forEach(function (el) {
+      ScrollTrigger.create({
+        trigger: el, start: 'top 87%', once: true,
+        onEnter: function () { el.classList.add('is-visible'); }
+      });
+    });
+    document.querySelectorAll('.reveal-img').forEach(function (el) {
+      ScrollTrigger.create({
+        trigger: el, start: 'top 82%', once: true,
+        onEnter: function () { el.classList.add('is-visible'); }
+      });
+    });
   });
 })();

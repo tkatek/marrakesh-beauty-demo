@@ -1,175 +1,146 @@
 /* ==========================================================================
    Jamal Marrakech — main.js
-   Nav, sidebar, draggable reviews slider, filters, gallery, qty, order summary
+   Nav scroll state, mobile sidebar, GSAP entrance + scroll-reveal animations
    ========================================================================== */
+
 document.addEventListener('DOMContentLoaded', () => {
 
-  /* ---------- Nav scroll ---------- */
+  /* ---------- Nav scroll state ---------- */
   const nav = document.getElementById('nav');
-  if (nav) {
-    const onScroll = () => nav.classList.toggle('is-scrolled', window.scrollY > 28);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-  }
+  const onScroll = () => {
+    if (window.scrollY > 40) nav.classList.add('is-scrolled');
+    else nav.classList.remove('is-scrolled');
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
 
   /* ---------- Mobile sidebar ---------- */
-  const toggle = document.getElementById('navToggle');
-  const sidebar = document.getElementById('sidebar');
-  const overlay = document.getElementById('sidebarOverlay');
+  const toggle   = document.getElementById('navToggle');
+  const sidebar  = document.getElementById('sidebar');
+  const overlay  = document.getElementById('sidebarOverlay');
   const closeBtn = document.getElementById('sidebarClose');
 
-  if (toggle && sidebar && overlay) {
-    const open = () => {
-      sidebar.classList.add('is-open');
-      sidebar.setAttribute('aria-hidden', 'false');
-      overlay.classList.add('is-open');
-      toggle.classList.add('is-active');
-      toggle.setAttribute('aria-expanded', 'true');
-      document.body.style.overflow = 'hidden';
-    };
-    const close = () => {
-      sidebar.classList.remove('is-open');
-      sidebar.setAttribute('aria-hidden', 'true');
-      overlay.classList.remove('is-open');
-      toggle.classList.remove('is-active');
-      toggle.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-    };
-    toggle.addEventListener('click', () => sidebar.classList.contains('is-open') ? close() : open());
-    if (closeBtn) closeBtn.addEventListener('click', close);
-    overlay.addEventListener('click', close);
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
-    document.querySelectorAll('.sidebar__links a, .sidebar__btn').forEach(a => a.addEventListener('click', close));
+  const openSidebar = () => {
+    sidebar.classList.add('is-open');
+    overlay.classList.add('is-open');
+    toggle.classList.add('is-active');
+    toggle.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  };
+  const closeSidebar = () => {
+    sidebar.classList.remove('is-open');
+    overlay.classList.remove('is-open');
+    toggle.classList.remove('is-active');
+    toggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  };
+
+  toggle.addEventListener('click', () => {
+    sidebar.classList.contains('is-open') ? closeSidebar() : openSidebar();
+  });
+  closeBtn.addEventListener('click', closeSidebar);
+  overlay.addEventListener('click', closeSidebar);
+  document.querySelectorAll('.sidebar__links a, .sidebar__btn').forEach(a =>
+    a.addEventListener('click', closeSidebar)
+  );
+
+  /* ---------- GSAP ---------- */
+  if (window.gsap) {
+    gsap.registerPlugin(ScrollTrigger);
+
+    /* Hero load sequence — one orchestrated moment */
+    const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    heroTl
+      .to('.hero__img', { scale: 1, duration: 1.6, ease: 'power2.out' }, 0)
+      .to('[data-hero-in]', {
+        opacity: 1, y: 0, duration: 1,
+        stagger: 0.12
+      }, 0.3)
+      .to('.hero__scroll', { opacity: 1, duration: 0.8 }, 1.2)
+      .from('.hero__scroll', { opacity: 0 }, 1.2);
+
+    gsap.set('.hero__scroll', { opacity: 0 });
+    gsap.to('.hero__scroll', { opacity: 1, duration: 0.8, delay: 1.3 });
+
+    /* Nav fade-in */
+    gsap.from('.nav__inner', { opacity: 0, y: -16, duration: 1, delay: 0.2, ease: 'power2.out' });
+
+    /* Scroll-triggered reveals for content below the fold.
+       Grouped elements (product/shop/review/why cards) get a small
+       stagger via transition-delay so each grid animates in rhythm. */
+    const staggerGroups = ['.best-grid', '.reviews__grid', '.shop-grid', '.why-grid'];
+    staggerGroups.forEach(sel => {
+      const group = document.querySelector(sel);
+      if (!group) return;
+      const items = group.querySelectorAll('.reveal-up');
+      items.forEach((item, i) => { item.style.transitionDelay = `${i * 0.1}s`; });
+      ScrollTrigger.create({
+        trigger: group,
+        start: 'top 82%',
+        once: true,
+        onEnter: () => items.forEach(item => item.classList.add('is-visible'))
+      });
+    });
+
+    /* Remaining single reveal-up / reveal-img elements outside grids */
+    const grouped = new Set();
+    staggerGroups.forEach(sel => {
+      document.querySelectorAll(`${sel} .reveal-up`).forEach(el => grouped.add(el));
+    });
+    document.querySelectorAll('.reveal-up').forEach(el => {
+      if (grouped.has(el)) return;
+      ScrollTrigger.create({
+        trigger: el, start: 'top 85%', once: true,
+        onEnter: () => el.classList.add('is-visible')
+      });
+    });
+    document.querySelectorAll('.reveal-img').forEach(el => {
+      ScrollTrigger.create({
+        trigger: el, start: 'top 80%', once: true,
+        onEnter: () => el.classList.add('is-visible')
+      });
+    });
+
+  } else {
+    /* Fallback if GSAP fails to load: just reveal everything */
+    document.querySelectorAll('.reveal-up, .reveal-img, [data-hero-in]')
+      .forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
   }
 
-  /* ---------- Draggable reviews slider — no arrows ---------- */
+  /* ---------- Testimonials: drag-to-scroll, no buttons/arrows ---------- */
   const track = document.getElementById('reviewsTrack');
   if (track) {
-    let isDown = false, startX = 0, scrollLeft = 0, hasDragged = false;
+    let isDown = false, startX = 0, startScroll = 0, moved = false;
 
-    const getX = e => (e.touches ? e.touches[0].pageX : e.pageX);
-    const onDown = e => {
-      isDown = true; hasDragged = false;
+    const start = (x) => {
+      isDown = true; moved = false;
+      startX = x;
+      startScroll = track.scrollLeft;
       track.classList.add('is-dragging');
-      startX = getX(e) - track.offsetLeft;
-      scrollLeft = track.scrollLeft;
     };
-    const onMove = e => {
+    const move = (x) => {
       if (!isDown) return;
-      const x = getX(e) - track.offsetLeft;
-      const walk = (x - startX) * 1.15;
-      if (Math.abs(walk) > 4) hasDragged = true;
-      track.scrollLeft = scrollLeft - walk;
+      const dx = x - startX;
+      if (Math.abs(dx) > 4) moved = true;
+      track.scrollLeft = startScroll - dx;
     };
-    const onUp = () => {
+    const end = () => {
       isDown = false;
       track.classList.remove('is-dragging');
-      // prevent click on cards after a drag
-      if (hasDragged) {
-        const handler = ev => { ev.preventDefault(); ev.stopPropagation(); track.removeEventListener('click', handler, true); };
-        track.addEventListener('click', handler, true);
-        setTimeout(() => track.removeEventListener('click', handler, true), 0);
-      }
     };
 
-    track.addEventListener('mousedown', onDown);
-    track.addEventListener('mousemove', onMove);
-    track.addEventListener('mouseup', onUp);
-    track.addEventListener('mouseleave', () => { isDown = false; track.classList.remove('is-dragging'); });
-    track.addEventListener('touchstart', onDown, { passive: true });
-    track.addEventListener('touchmove', onMove, { passive: true });
-    track.addEventListener('touchend', onUp);
+    // Mouse
+    track.addEventListener('mousedown', (e) => { start(e.pageX); e.preventDefault(); });
+    window.addEventListener('mousemove', (e) => move(e.pageX));
+    window.addEventListener('mouseup', end);
 
-    // wheel: horizontal scroll with touchpad feels natural — no extra code needed
-    // auto nudge on load so users discover it's draggable
-    requestAnimationFrame(() => {
-      track.scrollLeft = 0;
-      setTimeout(() => {
-        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-          track.scrollTo({ left: 56, behavior: 'smooth' });
-          setTimeout(() => track.scrollTo({ left: 0, behavior: 'smooth' }), 900);
-        }
-      }, 1200);
-    });
-  }
+    // Touch (native scrolling already works; this just keeps the cursor state tidy)
+    track.addEventListener('touchstart', (e) => start(e.touches[0].pageX), { passive: true });
+    track.addEventListener('touchmove', (e) => move(e.touches[0].pageX), { passive: true });
+    track.addEventListener('touchend', end);
 
-  /* ---------- Product filters (products.html) ---------- */
-  const chips = document.querySelectorAll('[data-filter]');
-  const cards = document.querySelectorAll('#productGrid [data-category]');
-  const noResults = document.getElementById('noResults');
-  if (chips.length && cards.length) {
-    chips.forEach(chip => {
-      chip.addEventListener('click', () => {
-        const f = chip.dataset.filter;
-        chips.forEach(c => c.classList.toggle('is-active', c === chip));
-        let visible = 0;
-        cards.forEach(card => {
-          const show = f === 'all' || card.dataset.category === f;
-          card.style.display = show ? '' : 'none';
-          if (show) visible++;
-        });
-        if (noResults) noResults.style.display = visible === 0 ? 'block' : 'none';
-        // re-trigger reveal for visible cards
-        cards.forEach(c => { if (c.style.display !== 'none') c.classList.add('is-visible'); });
-      });
-    });
-  }
-
-  /* ---------- Gallery (product-details) ---------- */
-  const mainImg = document.getElementById('galleryMain');
-  const thumbs = document.querySelectorAll('[data-thumb]');
-  if (mainImg && thumbs.length) {
-    thumbs.forEach(btn => {
-      btn.addEventListener('click', () => {
-        mainImg.src = btn.dataset.thumb;
-        thumbs.forEach(b => b.classList.remove('is-active'));
-        btn.classList.add('is-active');
-      });
-    });
-  }
-
-  /* ---------- Qty + order summary ---------- */
-  const stepper = document.querySelector('[data-qty]');
-  const sizeSel = document.querySelector('[data-size]');
-  const unitEl = document.querySelector('[data-summary-unit]');
-  const totalEl = document.querySelector('[data-summary-total]');
-  if (stepper || sizeSel) {
-    const countEl = stepper ? stepper.querySelector('[data-qty-count]') : null;
-    const inputEl = stepper ? stepper.querySelector('[data-qty-input]') : null;
-    let qty = 1;
-
-    const unitPrice = () => {
-      const opt = sizeSel ? sizeSel.selectedOptions[0] : null;
-      const p = opt ? parseFloat(opt.dataset.price) : (unitEl ? parseFloat(unitEl.textContent) : 0);
-      return isNaN(p) ? 0 : p;
-    };
-
-    const render = () => {
-      const unit = unitPrice();
-      if (countEl) countEl.textContent = qty;
-      if (inputEl) inputEl.value = qty;
-      if (unitEl) unitEl.textContent = unit.toFixed(0);
-      if (totalEl) totalEl.textContent = (unit * qty).toFixed(0);
-      const minus = stepper ? stepper.querySelector('[data-qty-minus]') : null;
-      if (minus) minus.disabled = qty <= 1;
-    };
-
-    if (stepper) {
-      stepper.querySelector('[data-qty-minus]')?.addEventListener('click', () => { if (qty > 1) { qty--; render(); } });
-      stepper.querySelector('[data-qty-plus]')?.addEventListener('click', () => { qty++; render(); });
-    }
-    if (sizeSel) sizeSel.addEventListener('change', render);
-    render();
-  }
-
-  /* ---------- Reveal fallback if GSAP not present ---------- */
-  if (!window.gsap) {
-    const io = 'IntersectionObserver' in window ? new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
-    }, { threshold: 0.12 }) : null;
-    if (io) document.querySelectorAll('.reveal-up, .reveal-img').forEach(el => io.observe(el));
-    else document.querySelectorAll('.reveal-up, .reveal-img').forEach(el => el.classList.add('is-visible'));
-    document.querySelectorAll('[data-hero-in]').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
+    // Prevent link/text click firing right after a drag
+    track.addEventListener('click', (e) => { if (moved) e.preventDefault(); }, true);
   }
 
 });
