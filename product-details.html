@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radiance Facial Oil — Jamal Marrakech</title>
+<meta name="description" content="Cold-pressed argan + prickly pear facial oil. Ecocert, lot-stamped, handmade in Marrakech.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="index.html" class="nav__logo">
+      <img src="assets/images/logo.jpeg" alt="Jamal Marrakech" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+      <span class="nav__logo-fallback" style="display:none;">
+        <span class="nav__logo-mark">ج</span>
+        <span><span class="nav__logo-text">Jamal <em>Marrakech</em></span><span class="nav__logo-sub">جمال مراكش</span></span>
+      </span>
+    </a>
+    <nav class="nav__links">
+      <a href="index.html">Home</a>
+      <a href="index.html#about">Our Story</a>
+      <a href="products.html" class="is-active">Shop</a>
+      <a href="index.html#reviews">Reviews</a>
+      <a href="#order" class="nav__cta">Order now</a>
+    </nav>
+    <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="sidebar" id="sidebar" aria-hidden="true">
+  <div class="sidebar__head"><span class="nav__logo-text">Jamal <em>Marrakech</em></span><button class="sidebar__close" id="sidebarClose" aria-label="Close menu">&times;</button></div>
+  <nav class="sidebar__links"><a href="index.html">Home</a><a href="products.html">Shop</a><a href="index.html#about">Our Story</a><a href="index.html#reviews">Reviews</a></nav>
+  <a href="#order" class="btn btn--accent sidebar__btn">Order now</a>
+</div>
+<div class="sidebar__overlay" id="sidebarOverlay"></div>
+
+<main style="padding-top:calc(var(--nav-h) + 10px);">
+  <section style="padding-bottom:40px;">
+    <div style="max-width:var(--max);margin:0 auto;padding:0 24px;">
+      <nav style="font-size:.84rem;color:var(--muted);margin-bottom:18px;display:flex;gap:8px;align-items:center;">
+        <a href="index.html" style="color:var(--muted);">Home</a><span>/</span><a href="products.html" style="color:var(--muted);">Shop</a><span>/</span><span style="color:var(--ink);font-weight:600;">Radiance Facial Oil</span>
+      </nav>
+
+      <div class="detail">
+        <!-- Gallery -->
+        <div class="detail__gallery">
+          <div class="detail__main">
+            <img id="galleryMain" src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=900&q=80&auto=format&fit=crop" alt="Radiance Facial Oil bottle">
+          </div>
+          <div class="detail__thumbs">
+            <button class="is-active" type="button" data-thumb="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=900&q=80&auto=format&fit=crop"><img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=200&q=80&auto=format&fit=crop" alt=""></button>
+            <button type="button" data-thumb="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=900&q=80&auto=format&fit=crop"><img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=200&q=80&auto=format&fit=crop" alt=""></button>
+            <button type="button" data-thumb="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=900&q=80&auto=format&fit=crop"><img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=200&q=80&auto=format&fit=crop" alt=""></button>
+          </div>
+          <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap;">
+            <span style="padding:6px 12px;border-radius:999px;background:var(--accent-soft);border:1px solid var(--line);font-size:.76rem;font-weight:600;color:var(--accent);">Ecocert Organic</span>
+            <span style="padding:6px 12px;border-radius:999px;background:var(--accent-soft);border:1px solid var(--line);font-size:.76rem;font-weight:600;color:var(--accent);">Lot # RA-2617</span>
+            <span style="padding:6px 12px;border-radius:999px;background:var(--accent-soft);border:1px solid var(--line);font-size:.76rem;font-weight:600;color:var(--accent);">Handmade</span>
+          </div>
+        </div>
+
+        <!-- Info -->
+        <div class="detail__info">
+          <p class="eyebrow">Best seller · Facial oil</p>
+          <h1>Radiance Facial Oil</h1>
+          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px;">
+            <span class="price" style="font-size:1.5rem;">290 MAD</span>
+            <span style="color:var(--gold);letter-spacing:.12em;">★★★★★</span>
+            <span style="font-size:.84rem;color:var(--muted);">(312 reviews)</span>
+          </div>
+          <p>
+            Cold-pressed argan and prickly pear seed oil — stone-ground and kneaded by the women's cooperatives of the Souss valley within 48 hours of harvest. Unfiltered, unrefined, sealed under argon. The same oil a grandmother would press for you.
+          </p>
+          <ul style="background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:16px 16px 16px 28px;margin:16px 0;font-size:.9rem;color:var(--ink-2);line-height:1.7;">
+            <li>Rich in vitamin E, oleic &amp; linoleic acids — for face, lips &amp; cuticles</li>
+            <li>Single ingredient base: 100% Argania Spinosa + Opuntia — nothing else</li>
+            <li>Absorbs in seconds, no greasy film — day or night</li>
+          </ul>
+
+          <!-- Order form -->
+          <form class="form" id="orderForm" data-form="sheet" novalidate style="margin-top:18px;">
+            <h3 style="margin-bottom:4px;">Place your order</h3>
+            <p style="font-size:.88rem;margin-bottom:16px;">Fill this in and we'll reply with a payment link within one working day.</p>
+
+            <input type="hidden" name="product" value="Radiance Facial Oil">
+            <input type="hidden" name="unit_price" value="290">
+            <input type="hidden" name="currency" value="MAD">
+
+            <div class="form__status" role="status" aria-live="polite"></div>
+
+            <div class="form__row">
+              <div class="form__group">
+                <label class="form__label" for="od-name">Full name *</label>
+                <input class="form__input" id="od-name" name="full_name" type="text" autocomplete="name" required>
+              </div>
+              <div class="form__group">
+                <label class="form__label" for="od-email">Email *</label>
+                <input class="form__input" id="od-email" name="email" type="email" autocomplete="email" required>
+              </div>
+            </div>
+
+            <div class="form__row">
+              <div class="form__group">
+                <label class="form__label" for="od-phone">Phone / WhatsApp</label>
+                <input class="form__input" id="od-phone" name="phone" type="tel" autocomplete="tel" placeholder="+212 …">
+              </div>
+              <div class="form__group">
+                <label class="form__label" for="od-country">Shipping to *</label>
+                <select class="form__select" id="od-country" name="country" required>
+                  <option value="">Select…</option>
+                  <option>Morocco</option><option>France</option><option>Spain</option><option>United States</option>
+                  <option>United Kingdom</option><option>Germany</option><option>United Arab Emirates</option><option>Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form__row">
+              <div class="form__group">
+                <label class="form__label">Quantity</label>
+                <div class="qty" data-qty>
+                  <button type="button" data-qty-minus aria-label="Decrease">−</button>
+                  <span data-qty-count>1</span>
+                  <button type="button" data-qty-plus aria-label="Increase">+</button>
+                </div>
+                <input type="hidden" name="quantity" value="1" data-qty-input>
+              </div>
+              <div class="form__group">
+                <label class="form__label" for="od-size">Format</label>
+                <select class="form__select" id="od-size" name="format" data-size>
+                  <option value="30 ml dropper" data-price="290">30 ml dropper — 290 MAD</option>
+                  <option value="60 ml bottle" data-price="520">60 ml bottle — 520 MAD</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form__group">
+              <label class="form__label" for="od-notes">Notes (optional)</label>
+              <textarea class="form__textarea" id="od-notes" name="notes" rows="3" placeholder="Gift wrap? Sensitivities? ..."></textarea>
+            </div>
+
+            <div class="order-summary">
+              <div class="order-summary__row"><span>Unit price</span><span><span data-summary-unit>290</span> MAD</span></div>
+              <div class="order-summary__row"><span>Shipping</span><span>Calculated by reply</span></div>
+              <div class="order-summary__row"><span>Estimated total</span><span><span data-summary-total>290</span> MAD</span></div>
+            </div>
+
+            <button class="btn btn--accent" type="submit" style="width:100%;justify-content:center;">Request to order →</button>
+            <p style="font-size:.76rem;color:var(--muted);text-align:center;margin:8px 0 0;">No payment taken here. We email you a secure link after confirming stock &amp; shipping.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer" id="footer">
+  <div class="footer__top">
+    <div class="footer__brand"><span class="footer__logo">Jamal <em>Marrakech</em></span><p>Natural skincare, formulated and bottled in the Marrakesh medina. جمال مراكش</p><div class="footer__social"><a href="#">IG</a><a href="#">FB</a><a href="#">WA</a></div></div>
+    <div class="footer__col"><h5>Shop</h5><a href="products.html">Full Collection</a><a href="index.html#bestsellers">Bestsellers</a><a href="product-details.html">Hammam Ritual Kit</a></div>
+    <div class="footer__col"><h5>Company</h5><a href="index.html#about">Our Story</a><a href="index.html#reviews">Reviews</a><a href="index.html#why">Why Us</a></div>
+    <div class="footer__col"><h5>Visit or write</h5><p>Derb El Ferrane, Medina<br>Marrakesh, Morocco</p><p><a href="tel:+212600000000">+212 6 00 00 00 00</a></p><p><a href="mailto:hello@jamalmarrakech.com">hello@jamalmarrakech.com</a></p></div>
+  </div>
+  <div class="footer__bottom"><span>&copy; 2026 Jamal Marrakech. All rights reserved.</span><span>Demo site built for review purposes.</span></div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/form-handler.js"></script>
+</body>
+</html>

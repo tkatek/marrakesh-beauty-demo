@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop — Jamal Marrakech | Full Collection</title>
+<meta name="description" content="The full Jamal Marrakech collection — cleansers, facial oils, clay masks and hammam essentials.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="index.html" class="nav__logo">
+      <img src="assets/images/logo.jpeg" alt="Jamal Marrakech" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+      <span class="nav__logo-fallback" style="display:none;">
+        <span class="nav__logo-mark">ج</span>
+        <span><span class="nav__logo-text">Jamal <em>Marrakech</em></span><span class="nav__logo-sub">جمال مراكش</span></span>
+      </span>
+    </a>
+    <nav class="nav__links">
+      <a href="index.html">Home</a>
+      <a href="index.html#about">Our Story</a>
+      <a href="index.html#bestsellers">Bestsellers</a>
+      <a href="products.html" class="is-active">Shop</a>
+      <a href="index.html#reviews">Reviews</a>
+      <a href="#footer" class="nav__cta">Get in touch</a>
+    </nav>
+    <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="sidebar" id="sidebar" aria-hidden="true">
+  <div class="sidebar__head"><span class="nav__logo-text">Jamal <em>Marrakech</em></span><button class="sidebar__close" id="sidebarClose" aria-label="Close menu">&times;</button></div>
+  <nav class="sidebar__links">
+    <a href="index.html">Home</a><a href="index.html#about">Our Story</a><a href="products.html">Shop</a><a href="index.html#reviews">Reviews</a>
+  </nav>
+  <a href="products.html" class="btn btn--accent sidebar__btn">Shop the Collection</a>
+</div>
+<div class="sidebar__overlay" id="sidebarOverlay"></div>
+
+<main>
+  <div class="page-hero">
+    <p class="eyebrow">The collection</p>
+    <h1>Shop by skin <em style="color:var(--accent);font-style:italic;">ritual.</em></h1>
+    <p>From cleansers to hammam kits — small batches, single ingredients, bottled in the medina. Online photos, Moroccan light.</p>
+
+    <div class="filter-bar" role="group" aria-label="Filter products">
+      <button class="filter-chip is-active" type="button" data-filter="all">All</button>
+      <button class="filter-chip" type="button" data-filter="oils">Oils</button>
+      <button class="filter-chip" type="button" data-filter="clays">Clay &amp; masks</button>
+      <button class="filter-chip" type="button" data-filter="waters">Waters</button>
+      <button class="filter-chip" type="button" data-filter="bath">Bath &amp; hammam</button>
+    </div>
+  </div>
+
+  <section style="padding-top:0;">
+    <div class="product-grid-2" id="productGrid">
+      <!-- Oils -->
+      <article class="product-card reveal-up" data-category="oils">
+        <div class="product-card__img" style="background-image:url('https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=700&q=80&auto=format&fit=crop')"></div>
+        <div class="product-card__body">
+          <p class="product-card__tag">Best seller · Oil</p>
+          <h3><a href="product-details.html">Radiance Facial Oil</a></h3>
+          <p>Cold-pressed argan + prickly pear seed. Absorbed in seconds.</p>
+          <div class="product-card__foot"><span class="price">290 MAD</span><a href="product-details.html" class="btn btn--accent btn--sm">View</a></div>
+        </div>
+      </article>
+
+      <article class="product-card reveal-up" data-category="oils">
+        <div class="product-card__img" style="background-image:url('https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=700&q=80&auto=format&fit=crop')"></div>
+        <div class="product-card__body">
+          <p class="product-card__tag">Oil</p>
+          <h3><a href="product-details.html">Pure Argan Oil — Cold-Pressed</a></h3>
+          <p>100 ml · 100% first-press · lot-stamped · Ecocert</p>
+          <div class="product-card__foot"><span class="price">220 MAD</span><a href="product-details.html" class="btn btn--line btn--sm">View</a></div>
+        </div>
+      </article>
+
+      <article class="product-card reveal-up" data-category="clays">
+        <div class="product-card__img" style="background-image:url('https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=700&q=80&auto=format&fit=crop')"></div>
+        <div class="product-card__body">
+          <p class="product-card__tag">Mask</p>
+          <h3><a href="product-details.html">Detoxing Clay Mask</a></h3>
+          <p>Rhassoul clay + rose water from the Atlas.</p>
+          <div class="product-card__foot"><span class="price">240 MAD</span><a href="product-details.html" class="btn btn--line btn--sm">View</a></div>
+        </div>
+      </article>
+
+      <article class="product-card reveal-up" data-category="waters">
+        <div class="product-card__img" style="background-image:url('https://images.unsplash.com/photo-1526948128573-703ee1aeb6fa?w=700&q=80&auto=format&fit=crop')"></div>
+        <div class="product-card__body">
+          <p class="product-card__tag">Toner</p>
+          <h3><a href="product-details.html">Rose Water Toner</a></h3>
+          <p>Steam-distilled in the Dades Valley · no alcohol</p>
+          <div class="product-card__foot"><span class="price">150 MAD</span><a href="product-details.html" class="btn btn--line btn--sm">View</a></div>
+        </div>
+      </article>
+
+      <article class="product-card reveal-up" data-category="bath">
+        <div class="product-card__img" style="background-image:url('https://images.unsplash.com/photo-1556228578-8dc0d7e1df98?w=700&q=80&auto=format&fit=crop')"></div>
+        <div class="product-card__body">
+          <p class="product-card__tag">Hammam</p>
+          <h3><a href="product-details.html">Black Soap Exfoliant</a></h3>
+          <p>Olive + eucalyptus · hammam-grade · 500 g</p>
+          <div class="product-card__foot"><span class="price">180 MAD</span><a href="product-details.html" class="btn btn--line btn--sm">View</a></div>
+        </div>
+      </article>
+
+      <article class="product-card reveal-up" data-category="bath">
+        <div class="product-card__img" style="background-image:url('https://images.unsplash.com/photo-1570554886111-e0fc33a4d8d1?w=700&q=80&auto=format&fit=crop')"></div>
+        <div class="product-card__body">
+          <p class="product-card__tag">Kit</p>
+          <h3><a href="product-details.html">Hammam Ritual Kit</a></h3>
+          <p>Soap + kessa glove + clay · the full ritual</p>
+          <div class="product-card__foot"><span class="price">420 MAD</span><a href="product-details.html" class="btn btn--accent btn--sm">View</a></div>
+        </div>
+      </article>
+
+      <article class="product-card reveal-up" data-category="oils">
+        <div class="product-card__img" style="background-image:url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=700&q=80&auto=format&fit=crop')"></div>
+        <div class="product-card__body">
+          <p class="product-card__tag">Care</p>
+          <h3><a href="product-details.html">Nourishing Lip Balm</a></h3>
+          <p>Argan + beeswax · small jar, lasts months</p>
+          <div class="product-card__foot"><span class="price">90 MAD</span><a href="product-details.html" class="btn btn--line btn--sm">View</a></div>
+        </div>
+      </article>
+
+      <article class="product-card reveal-up" data-category="waters">
+        <div class="product-card__img" style="background-image:url('https://images.unsplash.com/photo-1556228720-195a672e8a03?w=700&q=80&auto=format&fit=crop')"></div>
+        <div class="product-card__body">
+          <p class="product-card__tag">Cleanser</p>
+          <h3><a href="product-details.html">Pure Cleansing Wash</a></h3>
+          <p>Olive-oil foaming base · gentle, non-stripping</p>
+          <div class="product-card__foot"><span class="price">220 MAD</span><a href="product-details.html" class="btn btn--line btn--sm">View</a></div>
+        </div>
+      </article>
+
+      <article class="product-card reveal-up" data-category="clays">
+        <div class="product-card__img" style="background-image:url('https://images.unsplash.com/photo-1617897903246-719242758050?w=700&q=80&auto=format&fit=crop')"></div>
+        <div class="product-card__body">
+          <p class="product-card__tag">Moisturizer</p>
+          <h3><a href="product-details.html">Hydrating Moisturizer</a></h3>
+          <p>Light cream · argan + aloe · daily hydration</p>
+          <div class="product-card__foot"><span class="price">260 MAD</span><a href="product-details.html" class="btn btn--line btn--sm">View</a></div>
+        </div>
+      </article>
+    </div>
+    <p id="noResults" style="display:none;text-align:center;margin-top:28px;color:var(--muted);">No products in this category — try another filter.</p>
+  </section>
+</main>
+
+<footer class="footer" id="footer">
+  <div class="footer__top">
+    <div class="footer__brand"><span class="footer__logo">Jamal <em>Marrakech</em></span><p>Natural skincare, formulated and bottled in the Marrakesh medina. جمال مراكش</p><div class="footer__social"><a href="#">IG</a><a href="#">FB</a><a href="#">WA</a></div></div>
+    <div class="footer__col"><h5>Shop</h5><a href="products.html">Full Collection</a><a href="product-details.html">Radiance Facial Oil</a><a href="products.html">Hammam Ritual Kit</a></div>
+    <div class="footer__col"><h5>Company</h5><a href="index.html#about">Our Story</a><a href="index.html#reviews">Reviews</a><a href="index.html#why">Why Us</a></div>
+    <div class="footer__col"><h5>Visit or write</h5><p>Derb El Ferrane, Medina<br>Marrakesh, Morocco</p><p><a href="tel:+212600000000">+212 6 00 00 00 00</a></p><p><a href="mailto:hello@jamalmarrakech.com">hello@jamalmarrakech.com</a></p></div>
+  </div>
+  <div class="footer__bottom"><span>&copy; 2026 Jamal Marrakech. All rights reserved.</span><span>Demo site built for review purposes.</span></div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/animations.js"></script>
+</body>
+</html>
